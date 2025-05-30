@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Состояние гонки в проектах на PHP | Владимир Лила</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+        .font-monospace { font-family:monospace; font-size: 20px; }
+        .bold { font-weight: bold; }
+        .mb-3 { margin-bottom: 30px; }
+        .mb-2 { margin-bottom: 30px; }
+        .lh-12 { line-height: 1.2; }
+        .lh-14 { line-height: 1.4; }
+        .lh-15 { line-height: 1.5; }
+        .gray { color: #ccc }
+        .italic { font-style: italic; }
+
+        .company {
+            display: inline-block;
+            width: 120px;
+            height: 50px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 100px;
+        }
+
+        .company.dostavista { background-image: url('pictures/lila/companies/dostavista.svg'); background-size: 90px; }
+        .company.vkontakte { background-image: url('pictures/lila/companies/vkontakte.svg'); background-size: 130px; width: 140px;}
+        .company.biglion { background-image: url('pictures/lila/companies/biglion.png'); background-size: 80px; width: 100px;}
+        .company.maaaps { background-image: url('pictures/lila/companies/maaaps.svg'); }
+        .company.first-position { background-position: left center; }
+
+    </style>
+</head>
+<body class="shower list">
+    <section class="slide preview">
+        <div class="lines"></div>
+        <div class="stripes"></div>
+        <h1>Состояние гонки в проектах на PHP</h1>
+        <p>Владимир Лила</p>
+    </section>
+
+    <section class="slide">
+        <h2>О себе</h2>
+        <div class="columns two">
+            <div>
+                <img src="pictures/lila/ava.webp" alt="Лила Владимир" style="max-width: 100%; max-height: 400px;">
+            </div>
+            <div>
+                <div class="lh-12 bold mb-2">Владимир Лила</div>
+                <div class="lh-12 font-monospace mb-2">Технический директор<br>Тандал | <a href="https://tandal.ru">tandal.ru</a></div>
+                <div style="clear: both" class="mb-2">
+                    <div class="company vkontakte first-position"></div>
+                    <div class="company dostavista"></div>
+                    <div class="company biglion"></div>
+                </div>
+
+                <div class="mb">
+                    <div class="lh-12 font-monospace">Сооснователь</div>
+                    <div style="clear: both">
+                        <div class="company maaaps first-position"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="columns two">
+            <div>
+                <h2>Гонка данных /<br>Data Race</h2>
+                <div class="next lh-14">Состояние, когда разные потоки обращаются к одной ячейке памяти без какой-либо синхронизации, и как <mark class="bold">минимум один из потоков осуществляет запись</mark></div>
+            </div>
+            <div>
+                <h2>Состояние гонки /<br>Race condition</h2>
+                <div class="next lh-14">Ошибка проектирования системы, при которой работа системы зависит от того, в каком порядке выполняются части кода, без организации синхронизации</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="columns two">
+            <div>
+                <h2>Гонка данных /<br>Data Race</h2>
+                <div class="next">
+                    <img class="next" src="pictures/lila/data-race.png" style="max-width: 70%; display: block;margin: auto;">
+                </div>
+            </div>
+            <div>
+                <h2>Состояние гонки /<br>Race condition</h2>
+                <div class="next">
+                    <img class="next" src="pictures/lila/race-condition.png" style="max-width: 90%; display: block;margin: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="columns two">
+            <div>
+                <h2>Гонка данных /<br>Data Race</h2>
+                <pre class="lh-15 next font-monospace" style="color: rgb(36, 41, 46); background-color: rgb(255, 255, 255); font-weight: 400; "><span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">class</span> <span style="color: rgb(111, 66, 193); font-weight: 400;">Balance</span>
+</span>{
+   <span style="color: rgb(215, 58, 73); font-weight: 400;">public</span> <span style="color: rgb(215, 58, 73); font-weight: 400;">float</span> <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span> = <span style="color: rgb(0, 92, 197); font-weight: 400;">0.0</span>;
+
+   <span style="color: rgb(215, 58, 73); font-weight: 400;">public</span> <span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">function</span> <span style="color: rgb(111, 66, 193); font-weight: 400;">change</span>(<span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">float</span> <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span></span>): <span style="color: rgb(111, 66, 193); font-weight: 400;">static</span>
+   </span>{
+      <span style="color: rgb(215, 58, 73); font-weight: 400;">$this</span>-&gt;amount += <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span>;
+      <span style="color: rgb(215, 58, 73); font-weight: 400;">return</span> <span style="color: rgb(215, 58, 73); font-weight: 400;">$this</span>;
+   }
+}</pre>
+            </div>
+            <div>
+                <h2>Состояние гонки /<br>Race condition</h2>
+                <ul class="lh-12">
+                   <li class="next mb-2">Многократное выставление оценок продукту</li>
+                   <li class="next mb-2">Многократное использование одного купона</li>
+                   <li class="next mb-2">Отгрузка со склада одного и того же товара дважды</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Борьба с Race Condition</h2>
+        <div class="next mb-2">Использовать <mark class="bold">распределенный мьютекс</mark></div>
+        <div class="next lh-12">MySQL:</div>
+        <div class="next lh-12 mb-2 font-monospace bold">GET_LOCK(), IS_FREE_LOCK(), RELEASE_LOCK()</div>
+        <div class="next lh-12">Postgres:</div>
+        <div class="next lh-12 mb-2 font-monospace bold">pg_advisory_lock(), pg_try_advisory_lock(), pg_advisory_unlock()</div>
+    </section>
+
+    <section class="slide">
+        <h2>Реализация в Tandal</h2>
+        <pre style="font-family:monospace;color: rgb(36, 41, 46); background-color: rgb(255, 255, 255); font-weight: 400; "><span style="color: rgb(215, 58, 73); font-weight: 400;">$this</span>-&gt;atomicProcess-&gt;<span style="color: rgb(111, 66, 193); font-weight: 400;">execute</span>(<span style="color: rgb(0, 92, 197); font-weight: 400;">$clientId</span>, function() <span style="color: rgb(215, 58, 73); font-weight: 400;">use</span> ($<span style="color: rgb(111, 66, 193); font-weight: 400;">goodId</span>, $<span style="color: rgb(111, 66, 193); font-weight: 400;">count</span>) {
+   $<span style="color: rgb(111, 66, 193); font-weight: 400;">good</span> = $<span style="color: rgb(111, 66, 193); font-weight: 400;">this</span>-&gt;<span style="color: rgb(111, 66, 193); font-weight: 400;">goodsTable</span>-&gt;<span style="color: rgb(111, 66, 193); font-weight: 400;">getById</span>($<span style="color: rgb(111, 66, 193); font-weight: 400;">goodId</span>);
+
+   <span style="color: rgb(215, 58, 73); font-weight: 400;">if</span> (<span style="color: rgb(0, 92, 197); font-weight: 400;">$good</span>-&gt;count &lt; <span style="color: rgb(0, 92, 197); font-weight: 400;">$count</span>) {
+      <span style="color: rgb(215, 58, 73); font-weight: 400;">throw</span> <span style="color: rgb(215, 58, 73); font-weight: 400;">new</span> <span style="color: rgb(227, 98, 9); font-weight: 400;">Exception</span>(<span style="color: rgb(3, 47, 98); font-weight: 400;">'Недостаточно товаров на складе'</span>);
+   }
+
+   <span style="color: rgb(0, 92, 197); font-weight: 400;">$good</span>-&gt;count -= <span style="color: rgb(0, 92, 197); font-weight: 400;">$count</span>;
+});
+</pre>
+    </section>
+
+    <section class="slide">
+        <h1 style="text-align: center; font-size: 80px">Спасибо за внимание!</h1>
+        <div style="width:70%; margin: 50px auto;">
+            <div class="lh-14" style="background-position: left center; background-image: url('pictures/lila/icons/github.svg'); background-repeat: no-repeat; padding-left: 50px; height: 40px; padding-top: 5px;">github.com/vblila</div>
+            <div class="lh-14" style="background-position: left center; background-image: url('pictures/lila/icons/linkedin.svg'); background-repeat: no-repeat; padding-left: 50px; height: 40px; padding-top: 5px;">linkedin.com/in/vladimir-lila</div>
+            <div class="lh-14" style="background-position: left center; background-image: url('pictures/lila/icons/vk.svg'); background-repeat: no-repeat; padding-left: 50px; height: 40px; padding-top: 5px;">vk.com/v.b.lila</div>
+        </div>
+    </section>
+
+    <div class="progress"></div>
+
+    <footer class="badge">
+        <a href="https://github.com/shower/shower">Fork me on GitHub</a>
+    </footer>
+
+    <script src="js/shower.min.js"></script>
+
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+</body>
+</html>
