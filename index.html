@@ -91,21 +91,10 @@
                 </div>
             </div>
             <div>
-                <h2>Состояние гонки /<br>Race condition</h2>
-                <div class="next">
-                    <img class="next" src="pictures/lila/race-condition.png" style="max-width: 90%; display: block;margin: auto;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="columns two">
-            <div>
-                <h2>Гонка данных /<br>Data Race</h2>
+                <h2>Пример:</h2>
                 <pre class="lh-15 next font-monospace" style="color: rgb(36, 41, 46); background-color: rgb(255, 255, 255); font-weight: 400; "><span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">class</span> <span style="color: rgb(111, 66, 193); font-weight: 400;">Balance</span>
 </span>{
-   <span style="color: rgb(215, 58, 73); font-weight: 400;">public</span> <span style="color: rgb(215, 58, 73); font-weight: 400;">float</span> <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span> = <span style="color: rgb(0, 92, 197); font-weight: 400;">0.0</span>;
+   <span style="color: rgb(215, 58, 73); font-weight: 400;">private</span> <span style="color: rgb(215, 58, 73); font-weight: 400;">float</span> <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span> = <span style="color: rgb(0, 92, 197); font-weight: 400;">0.0</span>;
 
    <span style="color: rgb(215, 58, 73); font-weight: 400;">public</span> <span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">function</span> <span style="color: rgb(111, 66, 193); font-weight: 400;">change</span>(<span style="color: rgb(36, 41, 46); font-weight: 400;"><span style="color: rgb(215, 58, 73); font-weight: 400;">float</span> <span style="color: rgb(0, 92, 197); font-weight: 400;">$amount</span></span>): <span style="color: rgb(111, 66, 193); font-weight: 400;">static</span>
    </span>{
@@ -114,9 +103,20 @@
    }
 }</pre>
             </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="columns two">
             <div>
                 <h2>Состояние гонки /<br>Race condition</h2>
-                <ul class="lh-12">
+                <div class="next">
+                    <img class="next" src="pictures/lila/race-condition.png" style="max-width: 90%; display: block;margin: auto;">
+                </div>
+            </div>
+            <div>
+                <h2>Пример:</h2>
+                <ul class="lh-12 next">
                    <li class="next mb-2">Многократное выставление оценок продукту</li>
                    <li class="next mb-2">Многократное использование одного купона</li>
                    <li class="next mb-2">Отгрузка со склада одного и того же товара дважды</li>
